@@ -47,6 +47,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var activePageTitle = 'Categories';
     Widget activePage = CategoriesScreen(onToggleFavorite: _toggleFavorite);
 
     if (_selectedIndex == 1) {
@@ -54,10 +55,15 @@ class _TabsScreenState extends State<TabsScreen> {
           title: 'Favorites',
           meals: _favoriteMeals,
           onToggleFavorite: _toggleFavorite);
+      activePageTitle = 'Favorites';
     }
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(activePageTitle),
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
         onTap: _selectPage,
         items: const [
           BottomNavigationBarItem(
